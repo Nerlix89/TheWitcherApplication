@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -32,6 +33,10 @@ android {
 }
 
 dependencies {
+
+    implementation("com.google.firebase:firebase-auth:22.2.0") // Авторизация
+    implementation("com.google.firebase:firebase-firestore:24.10.0") // База данных Firestore
+    implementation("com.google.firebase:firebase-analytics:21.5.0") // Аналитика (опционально)
 
     implementation(libs.appcompat)
     implementation(libs.material)
