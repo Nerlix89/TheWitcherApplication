@@ -38,6 +38,9 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore:24.10.0") // База данных Firestore
     implementation("com.google.firebase:firebase-analytics:21.5.0") // Аналитика (опционально)
 
+    implementation("androidx.media3:media3-exoplayer:1.2.1")
+    implementation("androidx.media3:media3-ui:1.2.1")
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
