@@ -40,7 +40,7 @@ public class RegisterFragment extends Fragment {
         exoPlayer = new ExoPlayer.Builder(requireContext()).build();
         playerView.setPlayer(exoPlayer);
 
-        MediaItem mediaItem = MediaItem.fromUri(Uri.parse("asset:///enterance_background_video.mp4"));
+        MediaItem mediaItem = MediaItem.fromUri(Uri.parse("asset:///register_background_video.mp4"));
         exoPlayer.setMediaItem(mediaItem);
         exoPlayer.setRepeatMode(Player.REPEAT_MODE_ONE);
         exoPlayer.setPlayWhenReady(true);
