@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -27,6 +28,23 @@ public class WorldFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_world, container, false);
         viewPager = view.findViewById(R.id.viewPager);
         db = FirebaseFirestore.getInstance();
+
+        ImageView arrowLeft = view.findViewById(R.id.arrowLeft);
+        ImageView arrowRight = view.findViewById(R.id.arrowRight);
+
+        arrowLeft.setOnClickListener(v -> {
+            int currentItem = viewPager.getCurrentItem();
+            if (currentItem > 0) {
+                viewPager.setCurrentItem(currentItem - 1, true);
+            }
+        });
+
+        arrowRight.setOnClickListener(v -> {
+            int currentItem = viewPager.getCurrentItem();
+            if (currentItem < cardItems.size() - 1) {
+                viewPager.setCurrentItem(currentItem + 1, true);
+            }
+        });
 
         loadCards();
 
