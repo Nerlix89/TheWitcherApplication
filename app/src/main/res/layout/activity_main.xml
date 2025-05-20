@@ -19,5 +19,5 @@
         app:itemIconTint="@color/bottom_nav_icon_color"
         app:itemTextColor="@color/bottom_nav_color"
         app:itemActiveIndicatorStyle="@style/BottomNavNoIndicator"
-        app:backgroundTint="#000000"/>
+        app:backgroundTint="#2E2E2E"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
