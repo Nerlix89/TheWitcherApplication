@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_world"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:title="Мир" />
+    <item
+        android:id="@+id/nav_bestiary"
+        android:icon="@android:drawable/ic_menu_compass"
+        android:title="Бестиарий" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="Профиль" />
+</menu>

@@ -15,10 +15,10 @@ public class AuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        // if (auth.getCurrentUser() != null && auth.getCurrentUser().isEmailVerified()) {
-            //startActivity(new Intent(this, MainActivity.class));
-            //finish();
-        //}
+        if (auth.getCurrentUser() != null && auth.getCurrentUser().isEmailVerified()) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }
 
         setContentView(R.layout.activity_auth);
 
