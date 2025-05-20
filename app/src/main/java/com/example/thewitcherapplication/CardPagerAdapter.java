@@ -46,18 +46,17 @@ public class CardPagerAdapter extends RecyclerView.Adapter<CardPagerAdapter.View
         holder.title.setText(item.title);
         Glide.with(holder.image.getContext()).load(item.imageUrl).into(holder.image);
 
-        //holder.itemView.setOnClickListener(v -> {
-            //Fragment detail = new LocationDetailFragment();
-            //Bundle args = new Bundle();
-            //args.putString("location_id", item.id);
-            //detail.setArguments(args);
+        holder.itemView.setOnClickListener(v -> {
+            Fragment detail = new LocationDetailFragment();
+            Bundle args = new Bundle();
+            args.putString("location_id", item.id);detail.setArguments(args);
 
-            //activity.getSupportFragmentManager()
-                    //.beginTransaction()
-                    //.replace(R.id.fragment_container, detail)
-                    //.addToBackStack(null)
-                    //.commit();
-        //});
+            activity.getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, detail)
+                    .addToBackStack(null)
+                    .commit();
+        });
     }
 
     @Override

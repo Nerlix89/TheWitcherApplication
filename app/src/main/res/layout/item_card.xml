@@ -1,31 +1,28 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:layout_margin="8dp">
 
-    <!-- Фоновое изображение -->
+    <!-- Картинка -->
     <ImageView
         android:id="@+id/cardImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:scaleType="centerCrop" />
 
-    <!-- Затемнённый фон под текст -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom"
-        android:background="#88000000" />
-
-    <!-- Название карточки -->
+    <!-- Название -->
     <TextView
         android:id="@+id/cardTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:background="#2E2E2E"
         android:padding="8dp"
+        android:gravity="center"
+        android:text="Название"
+        android:textSize="25sp"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
         android:textStyle="bold"
-        android:gravity="center" />
-</FrameLayout>
+        android:fontFamily="@font/noto_sans_bold" />
+</LinearLayout>

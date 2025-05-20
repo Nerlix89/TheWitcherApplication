@@ -34,6 +34,8 @@ public class WorldFragment extends Fragment {
     }
 
     private void loadCards() {
+        cardItems.clear();
+
         db.collection("locations").get().addOnSuccessListener(snapshot -> {
             for (QueryDocumentSnapshot doc : snapshot) {
                 String id = doc.getId();
@@ -44,6 +46,7 @@ public class WorldFragment extends Fragment {
 
             CardPagerAdapter adapter = new CardPagerAdapter(cardItems, requireActivity());
             viewPager.setAdapter(adapter);
+
             viewPager.setOffscreenPageLimit(3);
             viewPager.setClipChildren(false);
             viewPager.setClipToPadding(false);
@@ -56,6 +59,7 @@ public class WorldFragment extends Fragment {
             viewPager.setPageTransformer(transformer);
         });
     }
+
 }
 
 
