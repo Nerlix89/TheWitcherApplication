@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
                 selectedFragment = new WorldFragment();
             } else if (itemId == R.id.nav_bestiary) {
                 selectedFragment = new BestiaryFragment();
+            } else if (itemId == R.id.nav_profile) {
+                selectedFragment = new ProfileFragment();
             }
 
             if (selectedFragment != null) {

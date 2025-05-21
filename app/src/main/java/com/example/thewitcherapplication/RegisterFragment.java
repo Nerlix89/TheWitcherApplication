@@ -2,6 +2,7 @@ package com.example.thewitcherapplication;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +22,18 @@ import androidx.media3.ui.PlayerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import android.util.Log;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterFragment extends Fragment {
 
     private EditText usernameField, emailField, passwordField;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
     private ExoPlayer exoPlayer;
 
     private long playbackPosition = 0;
@@ -56,6 +64,8 @@ public class RegisterFragment extends Fragment {
 
         registerBtn.setOnClickListener(v -> registerUser());
         toLogin.setOnClickListener(v -> navigate(new LoginFragment()));
+
+        db = FirebaseFirestore.getInstance();
 
         return view;
     }
@@ -101,29 +111,30 @@ public class RegisterFragment extends Fragment {
             if (task.isSuccessful()) {
                 FirebaseUser user = mAuth.getCurrentUser();
                 if (user != null) {
-
-                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                            .setDisplayName(username)
-                            .build();
-
-                    user.updateProfile(profileUpdates).addOnCompleteListener(profileTask -> {
-                        if (profileTask.isSuccessful()) {
-                            user.sendEmailVerification().addOnSuccessListener(unused -> {
-                                Toast.makeText(getContext(), "Письмо с подтверждением отправлено", Toast.LENGTH_LONG).show();
-                                mAuth.signOut();
-                                navigate(new LoginFragment());
-                            }).addOnFailureListener(e ->
-                                    Toast.makeText(getContext(), "Не удалось отправить письмо: " + e.getMessage(), Toast.LENGTH_LONG).show()
-                            );
-                        } else {
-                            Toast.makeText(getContext(), "Не удалось сохранить имя пользователя", Toast.LENGTH_LONG).show();
-                        }
-                    });
+                    saveUserToFirestore(user.getUid(), username, email);
+                    user.sendEmailVerification().addOnSuccessListener(unused -> {
+                        Toast.makeText(getContext(), "Письмо с подтверждением отправлено", Toast.LENGTH_LONG).show();
+                        mAuth.signOut();
+                        navigate(new LoginFragment());
+                    }).addOnFailureListener(e ->
+                            Toast.makeText(getContext(), "Не удалось отправить письмо: " + e.getMessage(), Toast.LENGTH_LONG).show()
+                    );
                 }
             } else {
                 Toast.makeText(getContext(), "Ошибка: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void saveUserToFirestore(String uid, String username, String email) {
+        Map<String, Object> userMap = new HashMap<>();
+        userMap.put("username", username);
+        userMap.put("email", email);
+
+        db.collection("users").document(uid)
+                .set(userMap)
+                .addOnSuccessListener(unused -> Log.d("Register", "Пользователь добавлен в Firestore"))
+                .addOnFailureListener(e -> Log.e("Register", "Ошибка Firestore: " + e.getMessage()));
     }
 
     private void navigate(Fragment fragment) {
