@@ -62,7 +62,7 @@ public class WorldFragment extends Fragment {
                 cardItems.add(new CardItem(id, title, imageUrl));
             }
 
-            CardPagerAdapter adapter = new CardPagerAdapter(cardItems, requireActivity());
+            CardPagerAdapter adapter = new CardPagerAdapter(cardItems, requireActivity(), 1);
             viewPager.setAdapter(adapter);
 
             viewPager.setOffscreenPageLimit(3);

@@ -27,10 +27,12 @@ public class CardPagerAdapter extends RecyclerView.Adapter<CardPagerAdapter.View
 
     private final List<CardItem> items;
     private final FragmentActivity activity;
+    private final int cardId;
 
-    public CardPagerAdapter(List<CardItem> items, FragmentActivity activity) {
+    public CardPagerAdapter(List<CardItem> items, FragmentActivity activity, int CardId) {
         this.items = items;
         this.activity = activity;
+        this.cardId = CardId;
     }
 
     @NonNull
@@ -46,17 +48,34 @@ public class CardPagerAdapter extends RecyclerView.Adapter<CardPagerAdapter.View
         holder.title.setText(item.title);
         Glide.with(holder.image.getContext()).load(item.imageUrl).into(holder.image);
 
-        holder.itemView.setOnClickListener(v -> {
-            Fragment detail = new LocationDetailFragment();
-            Bundle args = new Bundle();
-            args.putString("location_id", item.id);detail.setArguments(args);
+        if (cardId == 1)
+        {
+            holder.itemView.setOnClickListener(v -> {
+                Fragment detail = new LocationDetailFragment();
+                Bundle args = new Bundle();
+                args.putString("location_id", item.id);detail.setArguments(args);
 
-            activity.getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, detail)
-                    .addToBackStack(null)
-                    .commit();
-        });
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, detail)
+                        .addToBackStack(null)
+                        .commit();
+            });
+        }
+        else if (cardId == 2) {
+            holder.itemView.setOnClickListener(v -> {
+                MonsterSliderFragment fragment = new MonsterSliderFragment();
+                Bundle args = new Bundle();
+                args.putString("bestiary_id", item.id);
+                fragment.setArguments(args);
+
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .addToBackStack(null)
+                        .commit();
+            });
+        }
     }
 
     @Override

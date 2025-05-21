@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/monsterViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageButton
+        android:id="@+id/closeButton_moster_fragment"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_margin="16dp"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:contentDescription="Закрыть"
+        android:tint="#FFFFFF"
+        android:layout_gravity="top|start" />
+
+    <!-- Стрелка Влево -->
+
+    <!-- Стрелка Вправо -->
+
+</FrameLayout>
