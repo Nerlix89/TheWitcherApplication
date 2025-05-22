@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="24dp"
     android:background="#111111">
 
@@ -11,26 +11,44 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/title_profile"
-            android:layout_width="wrap_content"
+        <!-- Заголовок и иконка -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Профиль"
-            android:fontFamily="@font/noto_sans_bold"
-            android:textSize="28sp"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:layout_marginBottom="16dp"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
 
+            <TextView
+                android:id="@+id/title_profile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Профиль"
+                android:fontFamily="@font/noto_sans_bold"
+                android:textSize="28sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/editIcon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/edit_icon"
+                android:contentDescription="Редактировать"
+                android:tint="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- Подзаголовок -->
         <TextView
             android:id="@+id/subtitle_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_sans_medium"
             android:text="Персональные данные"
             android:textSize="20sp"
             android:textColor="#FFFFFF"
-            android:layout_marginBottom="24dp"/>
+            android:fontFamily="@font/noto_sans_medium"
+            android:layout_marginBottom="24dp" />
 
         <!-- Имя -->
         <LinearLayout
@@ -46,7 +64,7 @@
                 android:fontFamily="@font/noto_sans_bold"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/nameText"
@@ -55,9 +73,8 @@
                 android:layout_weight="1"
                 android:textColor="#858585"
                 android:fontFamily="@font/noto_sans_medium"
-                android:text="Пользователь"
                 android:textSize="16sp"
-                android:gravity="end"/>
+                android:gravity="end" />
         </LinearLayout>
 
         <!-- Email -->
@@ -74,7 +91,7 @@
                 android:fontFamily="@font/noto_sans_bold"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/emailText"
@@ -82,12 +99,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/noto_sans_medium"
-                android:text="someaddress@email.com"
                 android:textColor="#858585"
                 android:textSize="16sp"
-                android:gravity="end"/>
+                android:gravity="end" />
         </LinearLayout>
 
+        <!-- Кнопка выхода -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/logoutButton"
             android:layout_width="match_parent"
@@ -102,6 +119,7 @@
             android:background="@drawable/button_profile_rounded"
             app:backgroundTint="@null" />
 
+        <!-- Кнопка удаления -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/deleteProfileButton"
             android:layout_width="match_parent"
@@ -115,6 +133,6 @@
             android:layout_marginTop="24dp"
             android:background="@drawable/button_profile_rounded"
             app:backgroundTint="@null" />
-
     </LinearLayout>
 </ScrollView>
+

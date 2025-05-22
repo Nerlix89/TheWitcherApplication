@@ -37,7 +37,7 @@ public class MonsterSliderFragment extends Fragment {
         closeButton.setOnClickListener(v -> requireActivity().getSupportFragmentManager().popBackStack());
 
         viewPager = view.findViewById(R.id.monsterViewPager);
-        adapter = new MonsterPagerAdapter(monsterList);
+        adapter = new MonsterPagerAdapter(monsterList, viewPager);
         viewPager.setAdapter(adapter);
 
         if (getArguments() != null) {

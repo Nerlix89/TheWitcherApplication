@@ -1,39 +1,64 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="#111111">
 
-    <LinearLayout
+    <!-- Scrollable content -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/locationImage"
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="16dp" />
-
-        <TextView
-            android:id="@+id/locationTitle"
-            android:fontFamily="@font/noto_sans_bold"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="12dp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/locationDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#CCCCCC"
-            android:textSize="16sp"
-            android:lineSpacingExtra="4dp"
-            android:fontFamily="@font/noto_sans_medium"/>
-    </LinearLayout>
-</ScrollView>
+            <!-- Обёртка для картинки и крестика -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/locationImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:scaleType="centerCrop"
+                    android:layout_marginBottom="16dp" />
+
+                <ImageButton
+                    android:id="@+id/closeButton"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_margin="12dp"
+                    android:layout_gravity="top|end"
+                    android:background="@null"
+                    android:src="@drawable/close_button_image"
+                    android:tint="#FFFFFF"
+                    android:contentDescription="Закрыть" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/locationTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/noto_sans_bold"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:id="@+id/locationDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#CCCCCC"
+                android:textSize="16sp"
+                android:lineSpacingExtra="4dp"
+                android:fontFamily="@font/noto_sans_medium" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
+

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/monsterScroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/monsterScroll"
-    android:fillViewport="true"
-    android:background="#111111">
+    android:background="#111111"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,21 +17,55 @@
             android:id="@+id/monsterImage"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:layout_gravity="center"
             android:scaleType="fitCenter"
             android:contentDescription="Изображение монстра" />
 
-        <TextView
-            android:id="@+id/monsterTitle"
+        <!-- Блок со стрелками и заголовком -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/noto_sans_bold"
-            android:textStyle="bold"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp">
 
+            <!-- Левая стрелка -->
+            <ImageButton
+                android:id="@+id/arrowLeft_monster_page"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@null"
+                android:src="@drawable/arrow_back"
+                android:tint="#FFFFFF"
+                android:contentDescription="Назад"
+                android:layout_marginEnd="8dp"/>
+
+            <!-- Заголовок -->
+            <TextView
+                android:id="@+id/monsterTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:fontFamily="@font/noto_sans_bold"
+                android:textStyle="bold"/>
+
+            <!-- Правая стрелка -->
+            <ImageButton
+                android:id="@+id/arrowRight_monster_page"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@null"
+                android:src="@drawable/arrow_forward"
+                android:tint="#FFFFFF"
+                android:contentDescription="Вперёд"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <!-- Цитата -->
         <TextView
             android:id="@+id/monsterQuote"
             android:layout_width="match_parent"
@@ -42,6 +76,7 @@
             android:fontFamily="@font/noto_sans_medium"
             android:layout_marginBottom="10dp" />
 
+        <!-- Автор цитаты -->
         <TextView
             android:id="@+id/quoteAuthor"
             android:layout_width="match_parent"
@@ -52,6 +87,7 @@
             android:textColor="#858585"
             android:textSize="17sp" />
 
+        <!-- Описание -->
         <TextView
             android:id="@+id/monsterDesc"
             android:layout_width="match_parent"
@@ -61,6 +97,7 @@
             android:fontFamily="@font/noto_sans_medium"
             android:lineSpacingExtra="4dp" />
 
+        <!-- Дополнительные изображения -->
         <LinearLayout
             android:id="@+id/extraImagesContainer"
             android:layout_width="match_parent"
@@ -68,6 +105,7 @@
             android:orientation="horizontal"
             android:gravity="center"
             android:weightSum="4"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="12dp">
 
             <ImageView
@@ -102,8 +140,10 @@
                 android:layout_marginStart="4dp"
                 android:scaleType="centerCrop" />
         </LinearLayout>
+
     </LinearLayout>
 </ScrollView>
+
 
 
 

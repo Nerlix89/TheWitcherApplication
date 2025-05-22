@@ -4,12 +4,14 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 
@@ -18,9 +20,11 @@ import java.util.List;
 public class MonsterPagerAdapter extends RecyclerView.Adapter<MonsterPagerAdapter.ViewHolder> {
 
     private final List<MonsterEntry> entries;
+    private final ViewPager2 viewPager;
 
-    public MonsterPagerAdapter(List<MonsterEntry> entries) {
+    public MonsterPagerAdapter(List<MonsterEntry> entries, ViewPager2 viewPager) {
         this.entries = entries;
+        this.viewPager = viewPager;
     }
 
     @NonNull
@@ -51,6 +55,16 @@ public class MonsterPagerAdapter extends RecyclerView.Adapter<MonsterPagerAdapte
             holder.extraImagesContainer.setVisibility(View.GONE);
         }
 
+        holder.arrowLeft.setOnClickListener(v -> {
+            int current = viewPager.getCurrentItem();
+            if (current > 0) viewPager.setCurrentItem(current - 1, true);
+        });
+
+        holder.arrowRight.setOnClickListener(v -> {
+            int current = viewPager.getCurrentItem();
+            if (current < entries.size() - 1)
+                viewPager.setCurrentItem(current + 1, true);
+        });
     }
 
     private void setImage(ImageView view, String url) {
@@ -71,6 +85,7 @@ public class MonsterPagerAdapter extends RecyclerView.Adapter<MonsterPagerAdapte
         TextView title, quote, description, quoteAuthor;
         ImageView image, image01, image02, image03, image04;
         View extraImagesContainer;
+        ImageButton arrowLeft, arrowRight;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -84,6 +99,8 @@ public class MonsterPagerAdapter extends RecyclerView.Adapter<MonsterPagerAdapte
             image03 = itemView.findViewById(R.id.image03);
             image04 = itemView.findViewById(R.id.image04);
             extraImagesContainer = itemView.findViewById(R.id.extraImagesContainer);
+            arrowLeft = itemView.findViewById(R.id.arrowLeft_monster_page);
+            arrowRight = itemView.findViewById(R.id.arrowRight_monster_page);
         }
     }
 }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#1A1A1A"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Новое имя пользователя"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/noto_sans_bold" />
+
+    <EditText
+        android:id="@+id/editUsername"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Введите имя пользователя"
+        android:fontFamily="@font/noto_sans_medium"
+        android:paddingHorizontal="16dp"
+        android:textColor="#000000"
+        android:textColorHint="#3F3F3F"
+        android:background="@drawable/edit_text_bg"
+        android:padding="12dp"
+        android:inputType="textPersonName"
+        android:textSize="16sp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="24dp">
+
+        <Button
+            android:id="@+id/applyButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_profile_rounded"
+            app:backgroundTint="@null"
+            android:text="Применить" />
+
+        <Button
+            android:id="@+id/dismissButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/button_profile_rounded"
+            app:backgroundTint="@null"
+            android:text="Отменить" />
+    </LinearLayout>
+</LinearLayout>

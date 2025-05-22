@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +29,10 @@ public class LocationDetailFragment extends Fragment {
         titleView = view.findViewById(R.id.locationTitle);
         descriptionView = view.findViewById(R.id.locationDescription);
         imageView = view.findViewById(R.id.locationImage);
+        ImageButton closeButton = view.findViewById(R.id.closeButton);
+
+        closeButton.setOnClickListener(v -> requireActivity().getSupportFragmentManager().popBackStack());
+
         db = FirebaseFirestore.getInstance();
         return view;
     }
