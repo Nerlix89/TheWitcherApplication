@@ -39,12 +39,20 @@ public class LocationDetailFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        String id = getArguments().getString("location_id");
-        db.collection("locations").document(id).get().addOnSuccessListener(doc -> {
-            titleView.setText(doc.getString("title"));
-            descriptionView.setText(doc.getString("description"));
-            Glide.with(requireContext()).load(doc.getString("imageUrl")).into(imageView);
-        });
+        String id = getArguments() != null ? getArguments().getString("location_id") : null;
+
+        if (id != null) {
+            db.collection("locations").document(id)
+                    .get()
+                    .addOnSuccessListener(doc -> {
+                        Location location = doc.toObject(Location.class);
+                        if (location != null) {
+                            titleView.setText(location.getTitle());
+                            descriptionView.setText(location.getDescription());
+                            Glide.with(requireContext()).load(location.getImageUrl()).into(imageView);
+                        }
+                    });
+        }
     }
 }
 

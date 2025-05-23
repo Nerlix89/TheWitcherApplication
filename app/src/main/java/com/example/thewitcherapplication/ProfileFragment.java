@@ -60,6 +60,7 @@ public class ProfileFragment extends Fragment {
                 db.collection("users").document(user.getUid())
                         .delete()
                         .addOnSuccessListener(unused -> user.delete().addOnCompleteListener(task -> {
+                            user.delete();
                             mAuth.signOut();
                             startActivity(new Intent(requireActivity(), AuthActivity.class));
                             requireActivity().finish();

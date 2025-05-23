@@ -19,7 +19,9 @@ import androidx.media3.common.Player;
 import androidx.media3.exoplayer.ExoPlayer;
 import androidx.media3.ui.PlayerView;
 
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -121,7 +123,35 @@ public class RegisterFragment extends Fragment {
                     );
                 }
             } else {
-                Toast.makeText(getContext(), "Ошибка: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                Exception exception = task.getException();
+                String errorMessage = "Произошла ошибка. Попробуйте позже.";
+
+                if (exception instanceof FirebaseAuthException) {
+                    String errorCode = ((FirebaseAuthException) exception).getErrorCode();
+
+                    switch (errorCode) {
+                        case "ERROR_EMAIL_ALREADY_IN_USE":
+                            errorMessage = "Этот email уже используется.";
+                            break;
+                        case "ERROR_INVALID_EMAIL":
+                            errorMessage = "Некорректный формат email.";
+                            break;
+                        case "ERROR_WEAK_PASSWORD":
+                            errorMessage = "Пароль должен содержать не менее 6 символов.";
+                            break;
+                        case "ERROR_OPERATION_NOT_ALLOWED":
+                            errorMessage = "Регистрация отключена для этого проекта.";
+                            break;
+                        default:
+                            errorMessage = "Ошибка: " + errorCode;
+                            Log.e("Register", "Необработанный код ошибки: " + errorCode);
+                            break;
+                    }
+                } else if (exception instanceof FirebaseNetworkException) {
+                    errorMessage = "Проблема с интернет-соединением.";
+                }
+
+                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -18,7 +18,10 @@ import androidx.media3.common.Player;
 import androidx.media3.exoplayer.ExoPlayer;
 import androidx.media3.ui.PlayerView;
 
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 public class ResetPasswordFragment extends Fragment {
 
@@ -95,9 +98,19 @@ public class ResetPasswordFragment extends Fragment {
                 .addOnSuccessListener(unused -> Toast.makeText(getContext(),
                         "Письмо для сброса пароля отправлено на " + email,
                         Toast.LENGTH_LONG).show())
-                .addOnFailureListener(e -> Toast.makeText(getContext(),
-                        "Не удалось отправить письмо: " + e.getMessage(),
-                        Toast.LENGTH_LONG).show());
+                .addOnFailureListener(e -> {
+                    String errorMessage = "Не удалось отправить письмо для сброса пароля";
+
+                    if (e instanceof FirebaseAuthInvalidUserException) {
+                        errorMessage = "Пользователь с таким email не найден";
+                    } else if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                        errorMessage = "Некорректный формат email";
+                    } else if (e instanceof FirebaseNetworkException) {
+                        errorMessage = "Проблема с интернет-соединением";
+                    }
+
+                    Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
+                });
     }
 
     private void navigate(Fragment fragment) {

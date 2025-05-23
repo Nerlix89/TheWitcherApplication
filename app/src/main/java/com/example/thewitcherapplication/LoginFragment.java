@@ -111,15 +111,9 @@ public class LoginFragment extends Fragment {
                     startActivity(new Intent(getActivity(), MainActivity.class));
                     requireActivity().finish();
                 } else {
-                    user.sendEmailVerification()
-                            .addOnSuccessListener(unused -> Toast.makeText(getContext(),
-                                    "Ваш email не подтверждён. Письмо отправлено повторно.",
-                                    Toast.LENGTH_LONG).show())
-                            .addOnFailureListener(e -> Toast.makeText(getContext(),
-                                    "Не удалось отправить письмо: " + e.getMessage(),
-                                    Toast.LENGTH_LONG).show());
-
-                    mAuth.signOut();
+                    Toast.makeText(getContext(),
+                            "Ваш email не подтверждён. Подтвердите почту.",
+                            Toast.LENGTH_LONG).show();
                 }
 
             } else {
